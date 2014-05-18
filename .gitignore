@@ -1,0 +1,13 @@
+## important ignores here
+
+# ignore submodules for now
+
+connection/indietools
+connection/mf2py
+connection/ronkyuu
+
+## random ignores here
+
+# ignore weird cache files
+
+*~
