@@ -1,5 +1,5 @@
-import requests
-from . import mf2py, ronkyuu, indietools
+import requests, mf2util, mf2py
+from . import ronkyuu, indietools
 
 def parse_type(props, target_url):
 
@@ -66,51 +66,16 @@ def parse_content(props):
 	return props.get('content',[{}])[0].get('value', '')
 
 
-def parse_mention(mf, source_url, target_url):
+def parse_mention(html, mf, source_url, target_url):
 	"""Parse the microformat received to generate a mention for target_url
 	"""
 
-	mention_dict = {}
+	mention_dict = mf2util.interpret_comment(mf, source_url, target_url)
 
-	# if h-entry exists
-	try:
-		entry = [x for x in mf['items'] if 'h-entry' in x.get('type',[])][0]
-		props = entry['properties']
+	# if no h-entry do last resort from html
+	# insert safe default parsings
 
-		# parse for types
-		mention_dict['type'] = parse_type(props, target_url)
-
-		# parse for author
-		mention_dict['author'] = parse_author(props, mf)
-
-		# parse content
-		mention_dict['content'] = parse_content(props)
-
-		# parse published
-		try:
-			mention_dict['published'] = props['published'][0]
-		except (KeyError, IndexError):
-			# other methods
-			pass
-
-		# parse url
-		try:
-			mention_dict['url'] = props['url'][0]
-		except (KeyError, IndexError):
-			# other methods
-			mention_dict['url'] = source_url
-			pass
-
-		# parse name
-		try:
-			mention_dict['name'] = props['name'][0]
-		except (KeyError, IndexError):
-			# other methods
-			pass
-
-	# if no h-entry do last resort checking thing
-	except (KeyError, IndexError):
-		pass
+	mention_dict['comment_type'].append('mention')
 
 	return mention_dict
 
@@ -147,8 +112,9 @@ class WebmentionReceiver():
 			# source was retrieved
 			if self.target_url in self.source_result['refs']:
 				# mention to target found
-				mf = mf2py.Parser(doc=self.source_result['content'],url=self.source_url).to_dict()
-				self.mention = parse_mention(mf, self.source_url, self.target_url)
+				html = self.source_result['content']
+				mf = mf2py.Parser(doc=html, url=self.source_url).to_dict()
+				self.mention = parse_mention(html, mf, self.source_url, self.target_url)
 			else:
 				# source does not mention target
 				self.mention = None

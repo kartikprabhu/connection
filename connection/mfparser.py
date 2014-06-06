@@ -1,4 +1,4 @@
-from . import mf2py
+import mf2py
 
 def mfparser_http(request):
 	"""Acts as an http request front for mf2py Parser object
