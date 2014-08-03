@@ -19,7 +19,7 @@ setup(
     version='0.2.0',
     description='Connector to other sites',
     long_description=readme,
-	install_requires=required
+	install_requires=required,
     author='Kartik Prabhu',
     author_email='me@kartikprabhu.com',
     url='https://github.com/kartikprabhu/connection',
