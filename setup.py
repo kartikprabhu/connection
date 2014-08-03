@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 from setuptools import setup, find_packages
-from connection import __version__, __author__, __contact__
 
 # use requirements.txt for dependencies
 with open('requirements.txt') as f:
