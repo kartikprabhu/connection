@@ -1,0 +1,6 @@
+requests==2.3.0
+beautifulsoup4==4.3.2
+
+-e git+https://github.com/kartikprabhu/mf2py.git#egg=mf2py
+-e git+https://github.com/bear/ronkyuu.git#egg=ronkyuu
+-e git+https://github.com/kylewm/mf2util.git#egg=mf2util
