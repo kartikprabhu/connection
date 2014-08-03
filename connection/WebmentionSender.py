@@ -1,5 +1,4 @@
-import requests
-from . import ronkyuu
+import requests, ronkyuu
 
 def webmentionsender_http(request):
 	"""Acts as an http request front for webmentionsender
@@ -31,16 +30,7 @@ def webmentionsender_http(request):
 			pass
 
 		# make and use sender object
-
-		try:
-			filter_id = request.POST['filter-id']
-			if filter_id:
-				sender = WebmentionSender(source_url,look_in={'id': filter_id})
-			else:
-				raise ValueError
-		except (AttributeError, ValueError):
-			sender = WebmentionSender(source_url)
-			pass
+		sender = WebmentionSender(source_url)
 
 		#reply obtained
 		answer = {'source': source_url}
