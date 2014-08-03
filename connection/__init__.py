@@ -1,6 +1,6 @@
 #/usr/bin/env python
 
-VERSION = (0, 1, 0, "alpha")
+VERSION = (0, 2, 0, "")
 
 __author__    = 'Kartik Prabhu'
 __contact__   = 'me@kartikprabhu.com'
