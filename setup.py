@@ -7,6 +7,9 @@ from setuptools import setup, find_packages
 with open('requirements.txt') as f:
     required = map(lambda s: s.strip(), f.readlines())
 
+with open('requirements-links.txt') as f:
+    required_links = map(lambda s: s.strip(), f.readlines())
+
 with open('README.md') as f:
     readme = f.read()
 
@@ -19,6 +22,7 @@ setup(
     description='Connector to other sites',
     long_description=readme,
 	install_requires=required,
+	dependency_links=required_links,
     author='Kartik Prabhu',
     author_email='me@kartikprabhu.com',
     url='https://github.com/kartikprabhu/connection',
