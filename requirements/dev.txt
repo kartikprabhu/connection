@@ -1,0 +1,5 @@
+-r base.txt
+
+-e git+https://github.com/kartikprabhu/mf2py.git#egg=mf2py
+-e git+http://github.com/bear/ronkyuu.git#egg=ronkyuu
+-e git+https://github.com/kylewm/mf2util.git#egg=mf2util
