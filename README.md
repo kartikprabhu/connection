@@ -10,7 +10,7 @@ To install Connection you'd need to clone this repository through git and instal
 
 ```
 git clone https://github.com/kartikprabhu/connection.git
-cd connection-master
+cd connection
 pip install -r requirements/standard.txt
 ```
 
